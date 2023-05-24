@@ -1,0 +1,25 @@
+{
+  "menu": {
+    "dashboard": "Dashboard",
+    "goods": "Goods",
+    "goods/add": "GoodsAdd",
+    "attrs": "Attrs",
+    "attrs/group": "AttrsGroup",
+    "category/backend": "CategoryBackend",
+    "category/frontend": "CategoryFrontend"
+  },
+  "app": {
+    "sys": "Erabbit Admin",
+    "company": "ITCAST",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "dashboard": {
+    "welcome": "welcome back erabbit",
+    "active": "Active Users",
+    "total": "Total sales (CNY)",
+    "comment": "Comments",
+    "rating": "Favorable rating",
+    "year": "Annual sales trend"
+  }
+}

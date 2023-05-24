@@ -1,0 +1,25 @@
+{
+  "menu": {
+    "dashboard": "数据看板",
+    "goods": "商品管理",
+    "goods/add": "商品录入",
+    "attrs": "属性管理",
+    "attrs/group": "属性组管理",
+    "category/backend": "后台类目",
+    "category/frontend": "前台类目"
+  },
+  "app": {
+    "sys": "小兔鲜儿管理平台",
+    "company": "黑马程序员",
+    "settings": "系统设置",
+    "logout": "退出登录"
+  },
+  "dashboard": {
+    "welcome": "欢迎回到小兔鲜儿",
+    "active": "活跃用户",
+    "total": "销售总额 (CNY)",
+    "comment": "商品评价",
+    "rating": "好评比例",
+    "year": "年度销量走势"
+  }
+}

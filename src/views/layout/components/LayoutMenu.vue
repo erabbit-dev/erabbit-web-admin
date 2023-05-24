@@ -16,43 +16,43 @@ import {
       <template #icon>
         <DashboardOutlined />
       </template>
-      <RouterLink to="/dashboard">据看板</RouterLink>
+      <RouterLink to="/dashboard">{{ $t('menu.dashboard') }}</RouterLink>
     </a-menu-item>
     <a-menu-item key="/goods">
       <template #icon>
         <ShopOutlined />
       </template>
-      <RouterLink to="/goods">商品管理</RouterLink>
+      <RouterLink to="/goods">{{ $t('menu.goods') }}</RouterLink>
     </a-menu-item>
     <a-menu-item key="/goods/add">
       <template #icon>
         <SkinOutlined />
       </template>
-      <RouterLink to="/goods/add">商品录入</RouterLink>
+      <RouterLink to="/goods/add">{{ $t('menu.goods/add') }}</RouterLink>
     </a-menu-item>
     <a-menu-item key="/attrs">
       <template #icon>
         <TagOutlined />
       </template>
-      <RouterLink to="/attrs">属性管理</RouterLink>
+      <RouterLink to="/attrs">{{ $t('menu.attrs') }}</RouterLink>
     </a-menu-item>
     <a-menu-item key="/attrs/group">
       <template #icon>
         <TagsOutlined />
       </template>
-      <RouterLink to="/attrs/group">属性组管理</RouterLink>
+      <RouterLink to="/attrs/group">{{ $t('menu.attrs/group') }}</RouterLink>
     </a-menu-item>
     <a-menu-item key="/category/backend">
       <template #icon>
         <ClusterOutlined />
       </template>
-      <RouterLink to="/category/backend">后台类目</RouterLink>
+      <RouterLink to="/category/backend">{{ $t('menu.category/backend') }}</RouterLink>
     </a-menu-item>
     <a-menu-item key="/category/frontend">
       <template #icon>
         <PartitionOutlined />
       </template>
-      <RouterLink to="/category/frontend">前台类目</RouterLink>
+      <RouterLink to="/category/frontend">{{ $t('menu.category/frontend') }}</RouterLink>
     </a-menu-item>
   </a-menu>
 </template>

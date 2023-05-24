@@ -20,10 +20,12 @@ const collapsed = ref(true)
     </a-layout-sider>
     <a-layout class="er-section">
       <LayoutHeader />
-      <a-layout-content :style="{ margin: '16px 16px 0' }">
+      <a-layout-content>
         <LayoutPage></LayoutPage>
       </a-layout-content>
-      <a-layout-footer class="er-footer"> Erabbit Admin ©2023 Created by ITCAST </a-layout-footer>
+      <a-layout-footer class="er-footer">
+        {{ $t('app.sys') }} ©2023 Created by {{ $t('app.company') }}
+      </a-layout-footer>
     </a-layout>
   </a-layout>
 </template>
@@ -32,7 +34,6 @@ const collapsed = ref(true)
 .er-layout {
   height: 100%;
   width: 100%;
-  background-color: var(--er-background);
 
   .ant-layout-sider {
     background: var(--er-layout-background) url(@/assets/menu-bg.png) no-repeat right bottom / 300px
@@ -60,11 +61,19 @@ const collapsed = ref(true)
   .er-section {
     background-color: var(--er-background);
     color: var(--er-color);
+    height: 100%;
+    overflow: auto;
+    display: block;
   }
   .er-footer {
     background-color: var(--er-background);
     text-align: center;
-    color: var(--er-color);
+    color: var(--er-text2);
+  }
+  .ant-layout-content {
+    min-height: calc(100% - 126px);
+    padding: 16px 16px 0 16px;
+    box-sizing: border-box;
   }
 }
 </style>

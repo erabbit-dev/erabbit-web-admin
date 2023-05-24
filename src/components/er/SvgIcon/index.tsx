@@ -19,6 +19,10 @@ const erSvgIconProps = {
   hoverColor: {
     type: String,
     default: 'var(--ant-primary-color)'
+  },
+  enableHover: {
+    type: Boolean,
+    default: false
   }
 }
 
@@ -30,6 +34,9 @@ export default defineComponent({
   setup(props) {
     const symbolId = computed(() => `#${props.prefix}-${props.name}`)
     const hover = ref(false)
+    const color = computed(() =>
+      hover.value && props.enableHover ? props.hoverColor : props.color
+    )
 
     return () => (
       <svg
@@ -38,7 +45,7 @@ export default defineComponent({
         onMouseenter={() => (hover.value = true)}
         onMouseleave={() => (hover.value = false)}
       >
-        <use href={symbolId.value} fill={hover.value ? props.hoverColor : props.color} />
+        <use href={symbolId.value} fill={color.value} />
       </svg>
     )
   }
