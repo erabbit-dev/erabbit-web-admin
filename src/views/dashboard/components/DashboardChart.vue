@@ -11,7 +11,7 @@ const option: EChartsOption = {
     left: '0',
     right: '0',
     bottom: '0',
-    top: '40%',
+    top: '20%',
     containLabel: false
   },
   xAxis: [
@@ -74,10 +74,10 @@ const option: EChartsOption = {
     {
       name: '2023',
       type: 'line',
-      color: '#caede1',
+      color: '#ebfaf4',
       showSymbol: false,
       areaStyle: {
-        color: '#caede1',
+        color: '#ebfaf4',
         opacity: 1
       },
       data: [
@@ -92,9 +92,9 @@ const option: EChartsOption = {
       name: '2022',
       type: 'line',
       showSymbol: false,
-      color: '#70d4b7',
+      color: '#caede1',
       areaStyle: {
-        color: '#70d4b7',
+        color: '#caede1',
         opacity: 1
       },
       data: [
@@ -109,9 +109,9 @@ const option: EChartsOption = {
       name: '2021',
       type: 'line',
       showSymbol: false,
-      color: '#27ba9b',
+      color: '#9be0ca',
       areaStyle: {
-        color: '#27ba9b',
+        color: '#9be0ca',
         opacity: 1
       },
       data: [
@@ -139,10 +139,10 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .dashboard-chart {
-  margin-bottom: 16px;
+  margin-top: 16px;
   .line {
     width: 100%;
-    height: 360px;
+    height: 300px;
   }
   :deep(.ant-card-body) {
     padding: 0;

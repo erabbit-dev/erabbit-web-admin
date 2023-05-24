@@ -67,12 +67,12 @@ const listData: { type: 'success' | 'warning'; content: string }[] = [
       <a-col :span="8">
         <a-row :gutter="16">
           <a-col :span="24">
-            <DashboardChart />
-          </a-col>
-          <a-col :span="24">
             <a-card>
               <div class="da-img"></div>
             </a-card>
+          </a-col>
+          <a-col :span="24">
+            <DashboardChart />
           </a-col>
         </a-row>
       </a-col>
@@ -92,15 +92,11 @@ const listData: { type: 'success' | 'warning'; content: string }[] = [
   }
 }
 .da-img {
-  height: 400px;
+  height: 280px;
   padding: 20px;
   background: url(@/assets/illustration.svg) no-repeat center / contain;
 }
-.da-sum {
-  height: 400px;
-  margin-bottom: 16px;
-  background: var(--er-white) url(@/assets/statistic.png) no-repeat center bottom / 100% auto;
-}
+
 .events {
   list-style: none;
   padding: 10px;
