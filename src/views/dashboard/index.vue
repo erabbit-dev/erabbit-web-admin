@@ -55,7 +55,7 @@ const listData: { type: 'success' | 'warning'; content: string }[] = [
         <a-card>
           <a-calendar v-model:value="value">
             <template #dateCellRender="{ current }">
-              <ul class="events" v-if="current.date() === 12">
+              <ul class="events" v-if="current.date() === 12 || current.date() === 2">
                 <li v-for="item in listData" :key="item.content">
                   <a-badge :status="item.type" :text="item.content" />
                 </li>

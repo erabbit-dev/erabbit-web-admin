@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { echarts } from '@/utils'
+import { useResizeObserver } from '@vueuse/core'
 import type { EChartsOption } from 'echarts'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const option: EChartsOption = {
   tooltip: {
@@ -125,15 +126,22 @@ const option: EChartsOption = {
   ]
 }
 
+const lineRef = ref()
+
+let myChart: echarts.ECharts
 onMounted(() => {
-  const myChart = echarts.init(document.querySelector('.line')!)
+  myChart = echarts.init(lineRef.value)
   myChart.setOption(option)
+})
+
+useResizeObserver(lineRef, () => {
+  myChart.resize()
 })
 </script>
 
 <template>
   <a-card :title="$t('dashboard.year')" class="dashboard-chart">
-    <div class="line"></div>
+    <div class="line" ref="lineRef"></div>
   </a-card>
 </template>
 
