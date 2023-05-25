@@ -18,7 +18,8 @@ import {
   TitleComponent,
   TooltipComponent,
   // 内置数据转换器组件 (filter, sort)
-  TransformComponent
+  TransformComponent,
+  LegendComponent
 } from 'echarts/components'
 import * as echarts from 'echarts/core'
 import { LabelLayout, UniversalTransition } from 'echarts/features'
@@ -45,7 +46,8 @@ echarts.use([
   LineChart,
   LabelLayout,
   UniversalTransition,
-  SVGRenderer
+  SVGRenderer,
+  LegendComponent
 ])
 
 export { echarts }

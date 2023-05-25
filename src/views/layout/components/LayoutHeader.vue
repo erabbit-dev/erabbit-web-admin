@@ -99,12 +99,12 @@ function onToggleScreen() {
   justify-content: space-between;
   padding: 0 24px;
   .ant-avatar {
-    background: var(--ant-primary-color);
+    background: var(--er-primary);
     cursor: pointer;
   }
   .anticon {
     &:hover {
-      color: var(--ant-primary-color);
+      color: var(--er-primary);
     }
     cursor: pointer;
   }

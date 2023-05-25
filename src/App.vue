@@ -5,14 +5,12 @@ import en from 'ant-design-vue/es/locale/en_US'
 import { ref } from 'vue'
 import { watch } from 'vue'
 import { useAppStore } from './stores'
+import { theme } from 'ant-design-vue'
 
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 import 'dayjs/locale/en'
-
-ConfigProvider.config({
-  theme: { primaryColor: '#27BA9B' }
-})
+import { shallowRef } from 'vue'
 
 const appStore = useAppStore()
 const locale = ref(zh)
@@ -25,10 +23,19 @@ watch(
   },
   { immediate: true }
 )
+
+const algorithm = shallowRef()
+watch(
+  () => appStore.settings.dark,
+  (newVal) => {
+    algorithm.value = newVal ? theme.darkAlgorithm : null
+  },
+  { immediate: true }
+)
 </script>
 
 <template>
-  <ConfigProvider :locale="locale">
+  <ConfigProvider :theme="{ token: { colorPrimary: '#27BA9B' }, algorithm }" :locale="locale">
     <RouterView />
   </ConfigProvider>
 </template>

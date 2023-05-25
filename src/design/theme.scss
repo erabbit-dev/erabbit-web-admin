@@ -1,9 +1,24 @@
 :root {
-  --er-padding: 12px;
+  --er-primary: #27ba9b;
+
   --er-white: #ffffff;
   --er-background: #f5f5f5;
   --er-layout-background: #001529;
-  --er-color: #333333;
-  --er-text1: #666666;
-  --er-text2: #999999;
+  --er-text: rgb(0 0 0 / 88%);
+  --er-primary-1: #ebfaf4;
+  --er-primary-2: #caede1;
+  --er-primary-3: #9be0ca;
+  --er-primary-4: #70d4b7;
+  --er-primary-5: #4ac7a8;
+  --er-primary-6: #27ba9b;
+  --er-primary-7: #18947d;
+  --er-primary-8: #0c6e5f;
+  --er-primary-9: #044740;
+  --er-primary-10: #02211f;
+}
+
+:root.dark {
+  --er-white: #141414;
+  --er-background: #333;
+  --er-text: rgb(255 255 255 / 85%);
 }

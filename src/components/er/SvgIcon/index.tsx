@@ -14,11 +14,11 @@ const erSvgIconProps = {
   },
   color: {
     type: String,
-    default: '#666666'
+    default: 'var(--er-text)'
   },
   hoverColor: {
     type: String,
-    default: 'var(--ant-primary-color)'
+    default: 'var(--er-primary)'
   },
   enableHover: {
     type: Boolean,

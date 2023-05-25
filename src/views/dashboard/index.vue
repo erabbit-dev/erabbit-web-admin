@@ -81,6 +81,9 @@ const listData: { type: 'success' | 'warning'; content: string }[] = [
 </template>
 
 <style scoped lang="scss">
+.ant-page-header {
+  background-color: transparent;
+}
 .ant-card,
 .ant-calendar {
   border-radius: 4px;
@@ -88,7 +91,7 @@ const listData: { type: 'success' | 'warning'; content: string }[] = [
 .da-data {
   text-align: center;
   :deep(.ant-statistic-content) {
-    color: var(--ant-primary-color);
+    color: var(--er-primary);
   }
 }
 .da-img {

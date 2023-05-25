@@ -54,6 +54,7 @@ const collapsed = ref(true)
       font-size: 16px;
       color: #f5f5f5;
       text-align: center;
+
       height: 56px;
       line-height: 56px;
     }

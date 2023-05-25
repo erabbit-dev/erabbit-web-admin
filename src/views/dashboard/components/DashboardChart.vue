@@ -8,6 +8,10 @@ const option: EChartsOption = {
   tooltip: {
     trigger: 'axis'
   },
+  legend: {
+    top: '10%',
+    data: ['2021', '2022', '2023']
+  },
   grid: {
     left: '0',
     right: '0',

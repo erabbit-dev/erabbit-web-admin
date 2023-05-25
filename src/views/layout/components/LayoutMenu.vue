@@ -60,17 +60,21 @@ import {
 <style lang="scss" scoped>
 .ant-menu {
   flex: 1;
+  overflow: auto;
   background-color: transparent;
 
   :deep(.ant-menu-item) {
     background-color: transparent !important;
     height: 50px;
     line-height: 50px;
-    margin-bottom: 0;
+    border-radius: 0;
+    margin: 0;
+    width: 100%;
+    margin-bottom: 8px;
   }
 
   :deep(.ant-menu-item-selected) {
-    background-image: linear-gradient(-90deg, var(--ant-primary-8), var(--er-layout-background));
+    background-image: linear-gradient(-90deg, var(--er-primary-8), var(--er-layout-background));
   }
 }
 </style>

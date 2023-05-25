@@ -1,4 +1,4 @@
-@import './theme.scss';
+@import url('./theme.scss');
 
 html {
   overflow: hidden;
@@ -12,6 +12,7 @@ body {
   overflow: visible;
   overflow-x: hidden;
   background-color: var(--er-background);
+  color: var(--er-text);
 }
 
 a:focus,
