@@ -1,5 +1,10 @@
 import type { App } from 'vue'
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+import Nprogress from 'nprogress'
+
+Nprogress.configure({
+  showSpinner: false
+})
 
 const basicRoutes: RouteRecordRaw[] = [
   {
@@ -42,6 +47,14 @@ const basicRoutes: RouteRecordRaw[] = [
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: basicRoutes
+})
+
+router.beforeEach(() => {
+  Nprogress.start()
+})
+
+router.afterEach(() => {
+  Nprogress.done()
 })
 
 export function setupRouter(app: App) {
