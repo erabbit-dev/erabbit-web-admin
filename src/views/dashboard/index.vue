@@ -4,6 +4,7 @@ import { ClusterOutlined, ShopOutlined, TagOutlined } from '@ant-design/icons-vu
 import { Dayjs } from 'dayjs'
 import { ref } from 'vue'
 import DashboardChart from './components/DashboardChart.vue'
+import DashboardStatistic from './components/DashboardStatistic.vue'
 
 const value = ref<Dayjs>()
 
@@ -35,7 +36,10 @@ const listData: { type: 'success' | 'warning'; content: string }[] = [
         <a-card class="da-data" style="margin-bottom: 16px">
           <a-row>
             <a-col :span="6">
-              <a-statistic :title="$t('dashboard.active')" :value="3456" />
+              <DashboardStatistic
+                :title="$t('dashboard.active')"
+                :value="23456"
+              ></DashboardStatistic>
             </a-col>
             <a-col :span="6">
               <a-statistic :title="$t('dashboard.total')" :precision="2" :value="112893" />
@@ -91,12 +95,8 @@ const listData: { type: 'success' | 'warning'; content: string }[] = [
   color: #333;
 }
 
-.da-data {
+.ant-statistic {
   text-align: center;
-
-  :deep(.ant-statistic-content) {
-    color: var(--er-primary);
-  }
 }
 
 .da-img {

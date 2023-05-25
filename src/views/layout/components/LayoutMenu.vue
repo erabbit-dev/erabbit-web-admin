@@ -66,8 +66,9 @@ import {
   :deep(.ant-menu-item) {
     width: 100%;
     height: 50px;
-    margin: 0;
     margin-bottom: 8px;
+    margin-left: 0;
+    padding-left: calc(50% - 8px);
     border-radius: 0;
     background-color: transparent !important;
     line-height: 50px;

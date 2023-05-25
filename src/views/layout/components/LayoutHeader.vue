@@ -46,8 +46,7 @@ function onToggleScreen() {
       <a-breadcrumb-item>
         <RouterLink to="/"><HomeOutlined /></RouterLink>
       </a-breadcrumb-item>
-      <a-breadcrumb-item href=""> Application List </a-breadcrumb-item>
-      <a-breadcrumb-item>Application</a-breadcrumb-item>
+      <a-breadcrumb-item>{{ $t(`menu${$route.path.replace('/', '.')}`) }}</a-breadcrumb-item>
     </a-breadcrumb>
     <a-space class="er-avatar" :align="'center'">
       <a-dropdown placement="bottomRight">

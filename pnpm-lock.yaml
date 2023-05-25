@@ -19,6 +19,9 @@ dependencies:
   nprogress:
     specifier: ^0.2.0
     version: 0.2.0
+  number-flip:
+    specifier: ^1.1.10
+    version: 1.1.10
   pinia:
     specifier: ^2.0.36
     version: 2.0.36(typescript@5.0.4)(vue@3.3.2)
@@ -3313,6 +3316,10 @@ packages:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
     dev: true
 
+  /gelerator@3.0.0:
+    resolution: {integrity: sha512-OyNvfNn7Odtl/5xUa2mD3hkoltWSm8Fn7Q8uBMDjoUXkodEXO/+CTqC7b4iglcP61P+Fue1AAl2+/rIcqErPzQ==}
+    dev: false
+
   /gensync@1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
     engines: {node: '>=6.9.0'}
@@ -4745,6 +4752,12 @@ packages:
     dependencies:
       boolbase: 1.0.0
     dev: true
+
+  /number-flip@1.1.10:
+    resolution: {integrity: sha512-slYANqeXZspH1lGxFL4WMdPtlk5Sgk1rVRTmhJXGaQl23/mT+Mdf9UB56vjhl51Uj7GsM9H50jFkTvh3sKnOXA==}
+    dependencies:
+      gelerator: 3.0.0
+    dev: false
 
   /nwsapi@2.2.4:
     resolution: {integrity: sha512-NHj4rzRo0tQdijE9ZqAx6kYDcoRwYwSYzCA8MY3JzfxlrvEU0jhnhJT9BhqhJs7I/dKcrDm6TyulaRqZPIhN5g==}
