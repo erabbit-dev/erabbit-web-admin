@@ -152,10 +152,12 @@ useResizeObserver(lineRef, () => {
 <style lang="scss" scoped>
 .dashboard-chart {
   margin-top: 16px;
+
   .line {
     width: 100%;
     height: 300px;
   }
+
   :deep(.ant-card-body) {
     padding: 0;
   }

@@ -84,24 +84,29 @@ const listData: { type: 'success' | 'warning'; content: string }[] = [
 .ant-page-header {
   background-color: transparent;
 }
+
 .ant-card,
 .ant-calendar {
   border-radius: 4px;
+  color: #333;
 }
+
 .da-data {
   text-align: center;
+
   :deep(.ant-statistic-content) {
     color: var(--er-primary);
   }
 }
+
 .da-img {
   height: 280px;
   padding: 20px;
-  background: url(@/assets/illustration.svg) no-repeat center / contain;
+  background: url('@/assets/illustration.svg') no-repeat center / contain;
 }
 
 .events {
-  list-style: none;
   padding: 10px;
+  list-style: none;
 }
 </style>

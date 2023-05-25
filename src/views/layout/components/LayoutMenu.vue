@@ -64,13 +64,13 @@ import {
   background-color: transparent;
 
   :deep(.ant-menu-item) {
-    background-color: transparent !important;
-    height: 50px;
-    line-height: 50px;
-    border-radius: 0;
-    margin: 0;
     width: 100%;
+    height: 50px;
+    margin: 0;
     margin-bottom: 8px;
+    border-radius: 0;
+    background-color: transparent !important;
+    line-height: 50px;
   }
 
   :deep(.ant-menu-item-selected) {

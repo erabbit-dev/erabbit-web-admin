@@ -32,49 +32,52 @@ const collapsed = ref(true)
 
 <style lang="scss" scoped>
 .er-layout {
-  height: 100%;
   width: 100%;
+  height: 100%;
 
   .ant-layout-sider {
-    background: var(--er-layout-background) url(@/assets/menu-bg.png) no-repeat right bottom / 300px
-      auto;
+    background: var(--er-layout-background) url('@/assets/menu-bg.png') no-repeat right bottom /
+      300px auto;
 
     :deep(.ant-layout-sider-children) {
       display: flex;
       flex-direction: column;
     }
+
     .er-logo {
       width: 40px;
       height: 40px;
-      background: url(@/assets/logo.png) no-repeat center / 36px;
       margin: 12px auto 40px;
+      background: url('@/assets/logo.png') no-repeat center / 36px;
     }
 
     .er-toggle {
-      font-size: 16px;
-      color: #f5f5f5;
-      text-align: center;
-
       height: 56px;
+      color: #f5f5f5;
+      font-size: 16px;
       line-height: 56px;
+      text-align: center;
     }
   }
+
   .er-section {
-    background-color: var(--er-background);
-    color: var(--er-color);
+    display: block;
     height: 100%;
     overflow: auto;
-    display: block;
+    background-color: var(--er-background);
+    color: var(--er-color);
   }
+
   .er-footer {
     background-color: var(--er-background);
-    text-align: center;
     color: var(--er-text2);
+    text-align: center;
   }
+
   .ant-layout-content {
-    min-height: calc(100% - 126px);
-    padding: 16px 16px 0 16px;
     box-sizing: border-box;
+    min-height: calc(100% - 126px);
+    padding: 16px 16px 0;
   }
 }
 </style>

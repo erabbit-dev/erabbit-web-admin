@@ -91,23 +91,27 @@ function onToggleScreen() {
 
 <style lang="scss" scoped>
 .er-layout-header {
-  height: 56px;
-  line-height: 56px;
-  background-color: var(--er-white);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 56px;
   padding: 0 24px;
+  background-color: var(--er-white);
+  line-height: 56px;
+
   .ant-avatar {
     background: var(--er-primary);
     cursor: pointer;
   }
+
   .anticon {
+    cursor: pointer;
+
     &:hover {
       color: var(--er-primary);
     }
-    cursor: pointer;
   }
+
   .er-svg-icon {
     font-size: 16px;
     cursor: pointer;
