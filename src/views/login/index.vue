@@ -74,7 +74,7 @@ const onSubmit = async () => {
 <style lang="scss" scoped>
 .login-page {
   height: 100vh;
-  background: #f0f2f5 url('@/assets/login-bg.svg') no-repeat center / contain;
+  background: var(--er-background) url('@/assets/login-bg.svg') no-repeat center / contain;
 
   .ant-layout-header {
     display: flex;
