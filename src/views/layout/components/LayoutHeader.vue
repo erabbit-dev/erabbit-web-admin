@@ -1,27 +1,20 @@
 <script setup lang="ts">
-import { useAppStore } from '@/stores'
+import { useAppStore, useUserStore } from '@/stores'
 import {
   BellOutlined,
   CompressOutlined,
   ExpandOutlined,
   HomeOutlined,
   LogoutOutlined,
-  SettingOutlined,
-  TranslationOutlined
+  SettingOutlined
 } from '@ant-design/icons-vue'
 import { useDark, useFullscreen } from '@vueuse/core'
-import { message } from 'ant-design-vue'
-import { onMounted } from 'vue'
-import { watch } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { Modal, message } from 'ant-design-vue'
+import { onMounted, watch } from 'vue'
+import LayoutTranslate from './LayoutTranslate.vue'
+import { useRouter } from 'vue-router'
 
 const appStore = useAppStore()
-// 语言
-const { locale } = useI18n()
-function onToggleLang(lang: string) {
-  locale.value = lang
-  appStore.setSettingsProperty('lang', lang)
-}
 
 // 暗黑
 const isDarkMode = useDark()
@@ -38,6 +31,22 @@ function onToggleScreen() {
   if (!isSupported.value) return message.warn('浏览器不支持全屏')
   toggle()
 }
+
+// 退出
+const userStore = useUserStore()
+const router = useRouter()
+function onLogout() {
+  Modal.confirm({
+    title: '温馨提示',
+    content: '您确认退出小兔鲜管理平台吗？',
+    onOk() {
+      userStore.setToken('')
+      userStore.delUser()
+      router.push('/login')
+    },
+    okText: '确认'
+  })
+}
 </script>
 
 <template>
@@ -49,18 +58,7 @@ function onToggleScreen() {
       <a-breadcrumb-item>{{ $t(`menu${$route.path.replace('/', '.')}`) }}</a-breadcrumb-item>
     </a-breadcrumb>
     <a-space class="er-avatar" :align="'center'">
-      <a-dropdown placement="bottomRight">
-        <template #overlay>
-          <a-menu
-            :selected-keys="[appStore.settings.lang]"
-            @click="({ key }) => onToggleLang(key as string)"
-          >
-            <a-menu-item key="zh"> 中文 </a-menu-item>
-            <a-menu-item key="en"> English </a-menu-item>
-          </a-menu>
-        </template>
-        <TranslationOutlined></TranslationOutlined>
-      </a-dropdown>
+      <LayoutTranslate></LayoutTranslate>
       <a-divider style="font-size: 1em" type="vertical" />
       <BellOutlined></BellOutlined>
       <a-divider style="font-size: 1em" type="vertical" />
@@ -71,7 +69,7 @@ function onToggleScreen() {
       <a-divider style="font-size: 1em" type="vertical" />
       <ErSvgIcon
         enable-hover
-        :name="isDarkMode ? 'moon' : 'sun'"
+        :name="isDarkMode ? 'sun' : 'moon'"
         @click="isDarkMode = !isDarkMode"
       ></ErSvgIcon>
       <a-divider style="font-size: 1em" type="vertical" />
@@ -79,10 +77,10 @@ function onToggleScreen() {
         <template #overlay>
           <a-menu>
             <a-menu-item> <SettingOutlined /> {{ $t('app.settings') }} </a-menu-item>
-            <a-menu-item> <LogoutOutlined /> {{ $t('app.logout') }} </a-menu-item>
+            <a-menu-item @click="onLogout"> <LogoutOutlined /> {{ $t('app.logout') }} </a-menu-item>
           </a-menu>
         </template>
-        <a-avatar :size="28"> Z </a-avatar>
+        <a-avatar :size="28" :src="userStore.user?.avatar"> Z </a-avatar>
       </a-dropdown>
     </a-space>
   </a-layout-header>

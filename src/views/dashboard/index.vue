@@ -5,6 +5,7 @@ import { Dayjs } from 'dayjs'
 import { ref } from 'vue'
 import DashboardChart from './components/DashboardChart.vue'
 import DashboardStatistic from './components/DashboardStatistic.vue'
+import { useUserStore } from '@/stores'
 
 const value = ref<Dayjs>()
 
@@ -12,13 +13,19 @@ const listData: { type: 'success' | 'warning'; content: string }[] = [
   { type: 'warning', content: '10,000' },
   { type: 'success', content: '13,000' }
 ]
+
+const userStore = useUserStore()
 </script>
 
 <template>
   <div class="dashboard-page">
     <a-row :gutter="16">
       <a-col :span="16">
-        <a-page-header :avatar="{ src: avatar }" title="Admin" :sub-title="$t('dashboard.welcome')">
+        <a-page-header
+          :avatar="{ src: userStore.user?.avatar || avatar }"
+          :title="userStore.user?.name || userStore.user?.username"
+          :sub-title="$t('dashboard.welcome')"
+        >
           <template #extra>
             <a-button key="3">
               <template #icon> <TagOutlined /> </template

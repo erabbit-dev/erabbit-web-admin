@@ -8,6 +8,10 @@ Nprogress.configure({
 
 const basicRoutes: RouteRecordRaw[] = [
   {
+    path: '/login',
+    component: () => import('@/views/login/index.vue')
+  },
+  {
     path: '/',
     redirect: '/dashboard',
     component: () => import('@/views/layout/index.vue'),

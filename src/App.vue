@@ -35,7 +35,10 @@ watch(
 </script>
 
 <template>
-  <ConfigProvider :theme="{ token: { colorPrimary: '#27BA9B' }, algorithm }" :locale="locale">
+  <ConfigProvider
+    :theme="{ token: { colorPrimary: '#27BA9B', borderRadius: 2 }, algorithm }"
+    :locale="locale"
+  >
     <RouterView />
   </ConfigProvider>
 </template>

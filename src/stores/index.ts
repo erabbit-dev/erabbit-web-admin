@@ -12,3 +12,4 @@ export function setupStore(app: App) {
 }
 
 export * from './modules/app'
+export * from './modules/user'

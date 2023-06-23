@@ -4,8 +4,14 @@ import { ref } from 'vue'
 import LayoutHeader from './components/LayoutHeader.vue'
 import LayoutMenu from './components/LayoutMenu.vue'
 import LayoutPage from './components/LayoutPage.vue'
+import LayoutFooter from './components/LayoutFooter.vue'
+import { useUserStore } from '@/stores'
+import { onMounted } from 'vue'
 
 const collapsed = ref(true)
+
+const userStore = useUserStore()
+onMounted(() => userStore.getUser())
 </script>
 
 <template>
@@ -23,9 +29,7 @@ const collapsed = ref(true)
       <a-layout-content>
         <LayoutPage></LayoutPage>
       </a-layout-content>
-      <a-layout-footer class="er-footer">
-        {{ $t('app.sys') }} ©2023 Created by {{ $t('app.company') }}
-      </a-layout-footer>
+      <LayoutFooter></LayoutFooter>
     </a-layout>
   </a-layout>
 </template>
@@ -66,12 +70,6 @@ const collapsed = ref(true)
     overflow: auto;
     background-color: var(--er-background);
     color: var(--er-color);
-  }
-
-  .er-footer {
-    background-color: var(--er-background);
-    color: var(--er-text2);
-    text-align: center;
   }
 
   .ant-layout-content {

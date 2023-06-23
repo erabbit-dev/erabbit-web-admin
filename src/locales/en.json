@@ -21,5 +21,10 @@
     "comment": "Comments",
     "rating": "Favorable rating",
     "year": "Annual sales trend"
+  },
+  "login": {
+    "agreement": "User agreement",
+    "forgot": "Forgot password",
+    "login": "Login"
   }
 }

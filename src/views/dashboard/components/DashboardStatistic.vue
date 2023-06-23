@@ -34,7 +34,5 @@ onMounted(() => {
 
 :deep(.ant-statistic-content-value-int) {
   display: inline-block;
-  height: 1em;
-  overflow: hidden;
 }
 </style>

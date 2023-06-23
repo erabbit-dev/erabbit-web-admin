@@ -21,5 +21,10 @@
     "comment": "商品评价",
     "rating": "好评比例",
     "year": "年度销量走势"
+  },
+  "login": {
+    "agreement": "用户协议",
+    "forgot": "忘记密码",
+    "login": "登录"
   }
 }

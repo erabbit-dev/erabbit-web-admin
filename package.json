@@ -1,5 +1,5 @@
 {
-  "name": "erabbit-admin-vue3",
+  "name": "erabbit-web-admin",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -19,6 +19,7 @@
     "@ant-design/icons-vue": "^6.1.0",
     "@vueuse/core": "^10.1.2",
     "ant-design-vue": "4.0.0-rc.4",
+    "axios": "^1.4.0",
     "dayjs": "^1.11.7",
     "echarts": "^5.4.2",
     "nprogress": "^0.2.0",
@@ -64,7 +65,7 @@
     "stylelint-order": "^6.0.3",
     "stylelint-prettier": "^3.0.0",
     "typescript": "~5.0.4",
-    "unplugin-vue-components": "^0.24.1",
+    "unplugin-vue-components": "^0.25.1",
     "vite": "^4.3.5",
     "vite-plugin-html": "^3.2.0",
     "vite-plugin-svg-icons": "^2.0.1",
