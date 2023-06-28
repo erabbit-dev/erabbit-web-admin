@@ -47,3 +47,12 @@ export type ClassifyTree = {
     }[]
   }[]
 }[]
+
+export type Attribution = {
+  dataType: 'backend' | 'frontend'
+  id: string
+  name: string
+  logo: string
+  nameEn: string
+  relegationId: string
+}

@@ -1,5 +1,5 @@
 import { State } from '@/enums'
-import type { ClassifyTree, GoodsItem, GoodsSearchParams } from '@/types/goods'
+import type { Attribution, ClassifyTree, GoodsItem, GoodsSearchParams } from '@/types/goods'
 import { requestDelete, requestGet, requestPost, requestPut } from '@/utils/request'
 import type { Key } from 'ant-design-vue/es/table/interface'
 
@@ -21,3 +21,6 @@ export const batchDownGoodsService = (ids: Key[]) =>
 
 export const updateGoodsStateService = (id: Key, state: State.OnSale | State.InWarehouse) =>
   requestPut(`/goods/${id}/shelf`, { state })
+
+export const getClassifyListService = (classifyId: string = '') =>
+  requestGet<Attribution[]>('/goods/attribution', { backendId: classifyId })
