@@ -7,8 +7,8 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    AAffix: typeof import('ant-design-vue/es')['Affix']
     AAlert: typeof import('ant-design-vue/es')['Alert']
+    AAnchor: typeof import('ant-design-vue/es')['Anchor']
     AAvatar: typeof import('ant-design-vue/es')['Avatar']
     ABadge: typeof import('ant-design-vue/es')['Badge']
     ABreadcrumb: typeof import('ant-design-vue/es')['Breadcrumb']
@@ -42,7 +42,6 @@ declare module 'vue' {
     ATable: typeof import('ant-design-vue/es')['Table']
     ATabPane: typeof import('ant-design-vue/es')['TabPane']
     ATabs: typeof import('ant-design-vue/es')['Tabs']
-    ATag: typeof import('ant-design-vue/es')['Tag']
     ErSvgIcon: typeof import('./src/components/er/SvgIcon/index.tsx')['default']
   }
 }
