@@ -2,7 +2,7 @@
   "menu": {
     "dashboard": "数据看板",
     "goods": "商品管理",
-    "goods/add": "商品录入",
+    "goods/add": "商品添加",
     "attrs": "属性管理",
     "attrs/group": "属性组管理",
     "category/backend": "后台类目",
