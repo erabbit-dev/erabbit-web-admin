@@ -13,7 +13,7 @@ export type ErrorData = {
 function createHttp() {
   const http = axios.create({
     baseURL,
-    timeout: 5000
+    timeout: 10000
   })
 
   http.interceptors.request.use(

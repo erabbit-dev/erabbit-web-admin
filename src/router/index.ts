@@ -53,8 +53,10 @@ export const router = createRouter({
   routes: basicRoutes
 })
 
-router.beforeEach(() => {
-  Nprogress.start()
+router.beforeEach((to, from) => {
+  if (to.fullPath.split('#')[0] !== from.fullPath.split('#')[0]) {
+    Nprogress.start()
+  }
 })
 
 router.afterEach(() => {

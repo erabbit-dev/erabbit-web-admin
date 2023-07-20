@@ -9,9 +9,9 @@ const openCache = ref(false)
     <template #default="{ Component, route }">
       <Transition name="fade-slide" mode="out-in" appear>
         <keep-alive v-if="openCache">
-          <component :is="Component" :key="route.fullPath" />
+          <component :is="Component" :key="route.path" />
         </keep-alive>
-        <component v-else :is="Component" :key="route.fullPath" />
+        <component v-else :is="Component" :key="route.path" />
       </Transition>
     </template>
   </RouterView>
