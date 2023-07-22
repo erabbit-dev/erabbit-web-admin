@@ -54,7 +54,7 @@ export const router = createRouter({
 })
 
 router.beforeEach((to, from) => {
-  if (to.fullPath.split('#')[0] !== from.fullPath.split('#')[0]) {
+  if (to.path !== from.path) {
     Nprogress.start()
   }
 })

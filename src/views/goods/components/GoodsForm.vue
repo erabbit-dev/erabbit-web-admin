@@ -7,6 +7,7 @@ import GoodsFormImage from './GoodsFormImage.vue'
 import GoodsFormLogistics from './GoodsFormLogistics.vue'
 import GoodsFormPay from './GoodsFormPay.vue'
 import GoodsFormSale from './GoodsFormSale.vue'
+import { onMounted } from 'vue'
 
 const anchorItems = [
   {
@@ -50,12 +51,21 @@ const anchorItems = [
 const onGetContainer = () => document.querySelector('.er-section') as AnchorContainer
 
 const itemRefs = ref([])
+
+onMounted(() => {
+  console.log(itemRefs.value)
+})
 </script>
 
 <template>
   <div class="goods-form">
     <a-page-header title="发布商品" sub-title="请填写商品信息" @back="() => $router.back()">
-      <a-anchor direction="horizontal" :getContainer="onGetContainer" :items="anchorItems" />
+      <a-anchor
+        direction="horizontal"
+        :getContainer="onGetContainer"
+        :items="anchorItems"
+        :targetOffset="60"
+      />
       <div class="form" v-for="item in anchorItems" :key="item.key">
         <h3 :id="item.href.substring(1)">{{ item.title }}</h3>
         <Component :is="item.component" ref="itemRefs"></Component>
@@ -77,7 +87,7 @@ const itemRefs = ref([])
   }
 
   :deep(.ant-anchor-wrapper) {
-    background-color: #fff;
+    background-color: var(--er-white);
 
     .ant-anchor {
       &-link {
