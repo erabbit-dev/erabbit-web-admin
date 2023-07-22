@@ -8,7 +8,7 @@ import LayoutFooter from './components/LayoutFooter.vue'
 import { useUserStore } from '@/stores'
 import { onMounted } from 'vue'
 
-const collapsed = ref(true)
+const collapsed = ref(false)
 
 const userStore = useUserStore()
 onMounted(() => userStore.getUser())
@@ -17,7 +17,7 @@ onMounted(() => userStore.getUser())
 <template>
   <a-layout class="er-layout">
     <a-layout-sider :collapsed="collapsed" collapsedWidth="56" width="160">
-      <div class="er-logo"></div>
+      <div class="er-logo" :class="{ collapsed }"></div>
       <LayoutMenu></LayoutMenu>
       <div class="er-toggle" @click="collapsed = !collapsed">
         <MenuUnfoldOutlined v-if="collapsed" />
@@ -51,8 +51,13 @@ onMounted(() => userStore.getUser())
     .er-logo {
       width: 40px;
       height: 40px;
-      margin: 12px auto 40px;
+      margin: 28px auto;
+      transition: all 0.3s linear;
       background: url('@/assets/logo.png') no-repeat center / 36px;
+
+      &.collapsed {
+        margin: 12px auto 40px;
+      }
     }
 
     .er-toggle {
