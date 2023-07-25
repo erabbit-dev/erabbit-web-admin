@@ -56,3 +56,39 @@ export type Attribution = {
   nameEn: string
   relegationId: string
 }
+
+/**
+ * 商品属性信息
+ */
+export type GoodsProperties = {
+  otherProperties: OtherProperties[] | null
+  saleProperties: SaleProperties[]
+}
+/**
+ * 基础属性组信息
+ */
+export type OtherProperties = {
+  id: string
+  name: string
+  properties: SaleProperties[]
+}
+/**
+ * 属性信息
+ */
+export type SaleProperties = {
+  id: string
+  name: string
+  groupName: string
+  values: PropertyValue[]
+  isRemark: IsRemark
+  valueHasPicture: 0 | 1
+}
+/**
+ * 属性值
+ */
+export type PropertyValue = {
+  id: string
+  valueName: string
+  valuePicture?: { id: string; url: string }
+  remark?: string
+}

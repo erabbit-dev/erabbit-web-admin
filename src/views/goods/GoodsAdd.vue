@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import ClassifySelect from './components/ClassifySelect.vue'
+import { ref } from 'vue'
+import ClassifySelect, { type ClassifyDataItem } from './components/ClassifySelect.vue'
 import GoodsForm from './components/GoodsForm.vue'
+
+const classifyData = ref<ClassifyDataItem[]>([])
 </script>
 
 <template>
   <div class="goods-add-page">
-    <GoodsForm v-if="$route.query.classifyId && $route.query.brandId" />
-    <ClassifySelect v-else />
+    <GoodsForm v-if="classifyData.length" :classify-data="classifyData" />
+    <ClassifySelect v-else @next="classifyData = $event" />
   </div>
 </template>
 

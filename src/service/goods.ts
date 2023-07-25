@@ -1,5 +1,11 @@
 import { State } from '@/enums'
-import type { Attribution, ClassifyTree, GoodsItem, GoodsSearchParams } from '@/types/goods'
+import type {
+  Attribution,
+  ClassifyTree,
+  GoodsItem,
+  GoodsProperties,
+  GoodsSearchParams
+} from '@/types/goods'
 import { requestDelete, requestGet, requestPost, requestPut } from '@/utils/request'
 import type { Key } from 'ant-design-vue/es/table/interface'
 
@@ -24,3 +30,10 @@ export const updateGoodsStateService = (id: Key, state: State.OnSale | State.InW
 
 export const getClassifyListService = (classifyId: string = '') =>
   requestGet<Attribution[]>('/goods/attribution', { backendId: classifyId })
+
+export const getGoodsService = (id: string) => requestGet<GoodsItem>(`/goods/v2/${id}`)
+
+export const saveGoodsService = (data: Record<string, any>) => requestPost('/goods', data)
+
+export const getPropertiesService = (backendId: string) =>
+  requestGet<GoodsProperties>('/goods/v2/properties', { backendId })
