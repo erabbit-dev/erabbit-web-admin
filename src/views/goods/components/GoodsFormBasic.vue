@@ -1,10 +1,15 @@
 <script setup lang="ts">
-const submit = () => {
-  console.log('submit')
-}
+import type { OtherProperties } from '@/types/goods'
+import { computed } from 'vue'
+import type { ClassifyDataItem } from './ClassifySelect.vue'
 
-defineExpose({
-  submit
+const props = defineProps<{
+  classifyData: ClassifyDataItem[]
+  properties: OtherProperties[]
+}>()
+
+const selectedText = computed(() => {
+  return props.classifyData.map((item) => item.item?.name).join(' > ')
 })
 </script>
 
@@ -12,7 +17,7 @@ defineExpose({
   <div class="goods-form-basic">
     <a-form>
       <a-form-item label="商品分类">
-        <p class="form-text">床上用品 > 家居钟饰/闹钟 > 挂钟 > CNTOP <a href="#">切换类目</a></p>
+        <p class="form-text">{{ selectedText }} <a href="#">切换类目</a></p>
       </a-form-item>
       <a-form-item label="商品名称">
         <a-input placeholder="请输入商品名称"></a-input>
@@ -22,23 +27,26 @@ defineExpose({
           错误填写宝贝属性，可能会引起宝贝下架或搜索流量减少，影响您的正常销售，请认真准确填写！
         </p>
         <p class="form-text">没有合适的属性值？<a href="#">点击反馈</a></p>
-        <div class="attrs">
-          <div class="attrs-item">
-            <div class="attrs-item-header">属性组1：</div>
+        <div class="attrs" v-if="properties && properties.length">
+          <div class="attrs-item" v-for="item in properties" :key="item.id">
+            <div class="attrs-item-header">{{ item.name }}：</div>
             <div class="attrs-item-body">
               <a-row>
-                <a-col :span="3" style="text-align: right">属性：</a-col>
-                <a-col :span="9"><a-select></a-select></a-col>
-                <a-col :span="3" style="text-align: right">属性：</a-col>
-                <a-col :span="9"><a-select></a-select></a-col>
-                <a-col :span="3" style="text-align: right">属性：</a-col>
-                <a-col :span="9"><a-select></a-select></a-col>
-                <a-col :span="3" style="text-align: right">属性：</a-col>
-                <a-col :span="9"><a-select></a-select></a-col>
+                <template v-for="prop in item.properties" :key="prop.id">
+                  <a-col :span="3" style="text-align: right">{{ prop.name }}：</a-col>
+                  <a-col :span="9">
+                    <a-select>
+                      <a-select-option v-for="val in prop.values" :value="val.id" :key="val.id">
+                        {{ val.valueName }}
+                      </a-select-option>
+                    </a-select>
+                  </a-col>
+                </template>
               </a-row>
             </div>
           </div>
         </div>
+        <div class="attrs" v-else>正在加载属性数据...</div>
       </a-form-item>
     </a-form>
   </div>

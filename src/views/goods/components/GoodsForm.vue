@@ -1,20 +1,42 @@
 <script setup lang="ts">
+import { getPropertiesService } from '@/service/goods'
+import type { OtherProperties } from '@/types/goods'
+import { Modal } from 'ant-design-vue'
 import type { AnchorContainer } from 'ant-design-vue/es/anchor/Anchor'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import { onBeforeRouteLeave } from 'vue-router'
+import type { ClassifyDataItem } from './ClassifySelect.vue'
 import GoodsFormAfterSale from './GoodsFormAfterSale.vue'
 import GoodsFormBasic from './GoodsFormBasic.vue'
 import GoodsFormImage from './GoodsFormImage.vue'
 import GoodsFormLogistics from './GoodsFormLogistics.vue'
 import GoodsFormPay from './GoodsFormPay.vue'
 import GoodsFormSale from './GoodsFormSale.vue'
-import { onMounted } from 'vue'
+import { computed } from 'vue'
 
-const anchorItems = [
+const props = defineProps<{
+  classifyData: ClassifyDataItem[]
+}>()
+
+const otherProperties = ref<OtherProperties[]>([])
+onMounted(async () => {
+  const backendId = props.classifyData[2].item?.id
+  if (backendId) {
+    const res = await getPropertiesService(backendId)
+    otherProperties.value = res.data.otherProperties || []
+  }
+})
+
+const anchorItems = computed(() => [
   {
     key: '1',
     href: '#goods-form-basic',
     title: '基础信息',
-    component: GoodsFormBasic
+    component: GoodsFormBasic,
+    props: {
+      classifyData: props.classifyData,
+      properties: otherProperties.value
+    }
   },
   {
     key: '2',
@@ -46,14 +68,21 @@ const anchorItems = [
     title: '售后信息',
     component: GoodsFormAfterSale
   }
-]
+])
 
 const onGetContainer = () => document.querySelector('.er-section') as AnchorContainer
 
 const itemRefs = ref([])
 
-onMounted(() => {
-  console.log(itemRefs.value)
+onBeforeRouteLeave((to, from, next) => {
+  Modal.confirm({
+    title: '温馨提示',
+    content: '您确认要放弃填写商品信息，离开此页面吗？',
+    onOk: () => {
+      next()
+    },
+    okText: '确认'
+  })
 })
 </script>
 
@@ -68,7 +97,7 @@ onMounted(() => {
       />
       <div class="form" v-for="item in anchorItems" :key="item.key">
         <h3 :id="item.href.substring(1)">{{ item.title }}</h3>
-        <Component :is="item.component" ref="itemRefs"></Component>
+        <Component :is="item.component" ref="itemRefs" :="{ ...item.props }"></Component>
       </div>
     </a-page-header>
   </div>

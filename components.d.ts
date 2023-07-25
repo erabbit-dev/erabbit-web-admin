@@ -38,6 +38,7 @@ declare module 'vue' {
     APageHeader: typeof import('ant-design-vue/es')['PageHeader']
     ARow: typeof import('ant-design-vue/es')['Row']
     ASelect: typeof import('ant-design-vue/es')['Select']
+    ASelectOption: typeof import('ant-design-vue/es')['SelectOption']
     ASpace: typeof import('ant-design-vue/es')['Space']
     AStatistic: typeof import('ant-design-vue/es')['Statistic']
     ATable: typeof import('ant-design-vue/es')['Table']

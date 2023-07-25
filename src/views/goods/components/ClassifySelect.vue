@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import ClassifySelectItem, { type OptionType } from './ClassifySelectItem.vue'
-import { onMounted } from 'vue'
 import { getClassifyListService } from '@/service/goods'
-import { computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { computed, onMounted, ref } from 'vue'
+import ClassifySelectItem, { type OptionType } from './ClassifySelectItem.vue'
 
-type ClassifyDataItem = { options: OptionType[]; loading: boolean; item?: OptionType }
+export type ClassifyDataItem = { options: OptionType[]; loading: boolean; item?: OptionType }
 const classifyData = ref<ClassifyDataItem[]>([])
 
 onMounted(async () => {
@@ -32,15 +29,17 @@ const onSelected = async (index: number, item: OptionType) => {
 const selectedText = computed(() => {
   return classifyData.value.map((item) => item.item?.name).join(' > ')
 })
+
 const disabled = computed(() => {
   return classifyData.value.filter((item) => item.item).length !== 4
 })
 
-const router = useRouter()
+const emit = defineEmits<{
+  next: [ClassifyDataItem[]]
+}>()
 const onNext = () => {
   if (classifyData.value[3].item) {
-    const { id, relegationId } = classifyData.value[3].item as OptionType & { relegationId: string }
-    router.push({ path: '/goods/add', query: { brandId: id, classifyId: relegationId } })
+    emit('next', classifyData.value)
   }
 }
 </script>
