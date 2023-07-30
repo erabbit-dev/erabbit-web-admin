@@ -4,11 +4,18 @@ import ClassifySelect, { type ClassifyDataItem } from './components/ClassifySele
 import GoodsForm from './components/GoodsForm.vue'
 
 const classifyData = ref<ClassifyDataItem[]>([])
+const onBackClassify = () => {
+  classifyData.value = []
+}
 </script>
 
 <template>
   <div class="goods-add-page">
-    <GoodsForm v-if="classifyData.length" :classify-data="classifyData" />
+    <GoodsForm
+      v-if="classifyData.length"
+      :classify-data="classifyData"
+      @back-classify="onBackClassify"
+    />
     <ClassifySelect v-else @next="classifyData = $event" />
   </div>
 </template>

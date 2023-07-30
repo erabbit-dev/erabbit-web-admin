@@ -2,6 +2,7 @@
 import type { OtherProperties } from '@/types/goods'
 import { computed } from 'vue'
 import type { ClassifyDataItem } from './ClassifySelect.vue'
+import { LoadingOutlined } from '@ant-design/icons-vue'
 
 const props = defineProps<{
   classifyData: ClassifyDataItem[]
@@ -33,9 +34,9 @@ const selectedText = computed(() => {
             <div class="attrs-item-body">
               <a-row>
                 <template v-for="prop in item.properties" :key="prop.id">
-                  <a-col :span="3" style="text-align: right">{{ prop.name }}：</a-col>
+                  <a-col :span="3" :title="prop.name">{{ prop.name }}：</a-col>
                   <a-col :span="9">
-                    <a-select>
+                    <a-select style="width: 80%">
                       <a-select-option v-for="val in prop.values" :value="val.id" :key="val.id">
                         {{ val.valueName }}
                       </a-select-option>
@@ -46,7 +47,9 @@ const selectedText = computed(() => {
             </div>
           </div>
         </div>
-        <div class="attrs" v-else>正在加载属性数据...</div>
+        <div class="attrs loading" v-else>
+          <a-spin :indicator="LoadingOutlined" />
+        </div>
       </a-form-item>
     </a-form>
   </div>
@@ -76,9 +79,16 @@ const selectedText = computed(() => {
   }
 
   .attrs {
+    margin-top: 12px;
     border: 1px solid #eaeaea;
     border-bottom: none;
     background-color: #f9f9f9;
+
+    &.loading {
+      padding: 50px;
+      border: 1px solid #eaeaea;
+      text-align: center;
+    }
 
     &-item {
       padding: 16px 16px 0;
@@ -93,9 +103,13 @@ const selectedText = computed(() => {
         margin-bottom: 16px;
 
         &:nth-child(odd) {
+          overflow: hidden;
           color: #7c7c8a;
           font-size: 12px;
           line-height: 32px;
+          text-align: right;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
       }
     }

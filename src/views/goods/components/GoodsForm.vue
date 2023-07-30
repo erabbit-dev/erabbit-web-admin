@@ -74,6 +74,19 @@ const onGetContainer = () => document.querySelector('.er-section') as AnchorCont
 
 const itemRefs = ref([])
 
+const emit = defineEmits<{
+  backClassify: []
+}>()
+const onBackClassify = () => {
+  Modal.confirm({
+    title: '温馨提示',
+    content: '您确认要放弃填写商品信息，返回选择商品类目吗？',
+    onOk: () => {
+      emit('backClassify')
+    },
+    okText: '确认'
+  })
+}
 onBeforeRouteLeave((to, from, next) => {
   Modal.confirm({
     title: '温馨提示',
@@ -88,7 +101,7 @@ onBeforeRouteLeave((to, from, next) => {
 
 <template>
   <div class="goods-form">
-    <a-page-header title="发布商品" sub-title="请填写商品信息" @back="() => $router.back()">
+    <a-page-header title="发布商品" sub-title="请填写商品信息" @back="onBackClassify">
       <a-anchor
         direction="horizontal"
         :getContainer="onGetContainer"
