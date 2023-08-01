@@ -66,18 +66,6 @@ const selectedText = computed(() => {
     }
   }
 
-  .form-text {
-    margin: 0;
-    padding: 0;
-    color: #555;
-    line-height: 32px;
-
-    a {
-      margin-left: 10px;
-      color: var(--er-primary);
-    }
-  }
-
   .attrs {
     margin-top: 12px;
     border: 1px solid #eaeaea;

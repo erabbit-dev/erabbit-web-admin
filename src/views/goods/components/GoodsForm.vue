@@ -41,7 +41,7 @@ const anchorItems = computed(() => [
   {
     key: '2',
     href: '#goods-form-image',
-    title: '图文表述',
+    title: '图文描述',
     component: GoodsFormImage
   },
   {
