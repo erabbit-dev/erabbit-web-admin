@@ -1,4 +1,5 @@
 @import url('./theme.scss');
+@import url('./tailwind.css');
 
 html {
   overflow: hidden;
@@ -70,4 +71,16 @@ span {
 .fade-slide-leave-to {
   transform: translateX(30px);
   opacity: 0;
+}
+
+.form-text {
+  margin: 0;
+  padding: 0;
+  color: #555;
+  line-height: 32px;
+
+  a {
+    margin-left: 10px;
+    color: var(--er-primary);
+  }
 }
