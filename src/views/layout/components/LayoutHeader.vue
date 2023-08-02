@@ -56,7 +56,7 @@ function onLogout() {
         <RouterLink to="/"><HomeOutlined /></RouterLink>
       </a-breadcrumb-item>
       <a-breadcrumb-item>
-        <strong>{{ $t(`menu${$route.path.replace('/', '.')}`) }}</strong>
+        {{ $t(`menu${$route.path.replace('/', '.')}`) }}
       </a-breadcrumb-item>
     </a-breadcrumb>
     <a-space class="er-avatar" :align="'center'">

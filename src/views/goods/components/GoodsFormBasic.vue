@@ -1,13 +1,29 @@
 <script setup lang="ts">
 import type { OtherProperties } from '@/types/goods'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import type { ClassifyDataItem } from './ClassifySelect.vue'
 import { LoadingOutlined } from '@ant-design/icons-vue'
+import { onMounted } from 'vue'
+import { getPropertiesService } from '@/service/goods'
 
 const props = defineProps<{
   classifyData: ClassifyDataItem[]
-  properties: OtherProperties[]
 }>()
+
+const properties = ref<OtherProperties[]>([])
+const loading = ref(false)
+onMounted(async () => {
+  const backendId = props.classifyData[2].item?.id
+  if (backendId) {
+    try {
+      loading.value = true
+      const res = await getPropertiesService(backendId)
+      properties.value = res.data.otherProperties || []
+    } finally {
+      loading.value = false
+    }
+  }
+})
 
 const selectedText = computed(() => {
   return props.classifyData.map((item) => item.item?.name).join(' > ')
@@ -16,7 +32,7 @@ const selectedText = computed(() => {
 
 <template>
   <div class="goods-form-basic">
-    <a-form>
+    <a-form :labelCol="{ span: 3 }">
       <a-form-item label="商品分类">
         <p class="form-text">{{ selectedText }} <a href="#">切换类目</a></p>
       </a-form-item>
@@ -28,7 +44,7 @@ const selectedText = computed(() => {
           错误填写宝贝属性，可能会引起宝贝下架或搜索流量减少，影响您的正常销售，请认真准确填写！
         </p>
         <p class="form-text">没有合适的属性值？<a href="#">点击反馈</a></p>
-        <div class="attrs" v-if="properties && properties.length">
+        <div class="attrs" v-if="!loading" :style="properties.length ? {} : { border: 'none' }">
           <div class="attrs-item" v-for="item in properties" :key="item.id">
             <div class="attrs-item-header">{{ item.name }}：</div>
             <div class="attrs-item-body">
@@ -59,12 +75,6 @@ const selectedText = computed(() => {
 .goods-form-basic {
   max-width: 1000px;
   padding: 20px 60px;
-
-  :deep(.ant-form-item-label) {
-    label {
-      color: #848484;
-    }
-  }
 
   .attrs {
     margin-top: 12px;
