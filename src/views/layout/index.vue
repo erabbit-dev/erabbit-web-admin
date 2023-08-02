@@ -49,14 +49,17 @@ onMounted(() => userStore.getUser())
     }
 
     .er-logo {
-      width: 40px;
-      height: 40px;
+      width: 120px;
+      height: 120px;
       margin: 28px auto;
-      transition: all 0.3s linear;
-      background: url('@/assets/logo.png') no-repeat center / 36px;
+      transition: all 0.3s ease;
+      background: url('@/assets/logo2.png') no-repeat center / 90%;
 
       &.collapsed {
+        width: 40px;
+        height: 40px;
         margin: 12px auto 40px;
+        background-image: url('@/assets/logo.png');
       }
     }
 

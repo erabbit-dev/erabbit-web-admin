@@ -1,82 +1,55 @@
 <script setup lang="ts">
-import { getPropertiesService } from '@/service/goods'
-import type { OtherProperties } from '@/types/goods'
 import { Modal } from 'ant-design-vue'
 import type { AnchorContainer } from 'ant-design-vue/es/anchor/Anchor'
-import { onMounted, ref } from 'vue'
 import { onBeforeRouteLeave } from 'vue-router'
 import type { ClassifyDataItem } from './ClassifySelect.vue'
-import GoodsFormAfterSale from './GoodsFormAfterSale.vue'
 import GoodsFormBasic from './GoodsFormBasic.vue'
 import GoodsFormImage from './GoodsFormImage.vue'
-import GoodsFormLogistics from './GoodsFormLogistics.vue'
-import GoodsFormPay from './GoodsFormPay.vue'
 import GoodsFormSale from './GoodsFormSale.vue'
-import { computed } from 'vue'
 
-const props = defineProps<{
+defineProps<{
   classifyData: ClassifyDataItem[]
 }>()
 
-const otherProperties = ref<OtherProperties[]>([])
-onMounted(async () => {
-  const backendId = props.classifyData[2].item?.id
-  if (backendId) {
-    const res = await getPropertiesService(backendId)
-    otherProperties.value = res.data.otherProperties || []
-  }
-})
-
-const anchorItems = computed(() => [
+const anchorItems = [
   {
-    key: '1',
+    key: 'goods-form-basic',
     href: '#goods-form-basic',
-    title: '基础信息',
-    component: GoodsFormBasic,
-    props: {
-      classifyData: props.classifyData,
-      properties: otherProperties.value
-    }
+    title: '基础信息'
   },
   {
-    key: '2',
+    key: 'goods-form-image',
     href: '#goods-form-image',
-    title: '图文描述',
-    component: GoodsFormImage
+    title: '图文描述'
   },
   {
-    key: '3',
+    key: 'goods-form-sale',
     href: '#goods-form-sale',
-    title: '销售信息',
-    component: GoodsFormSale
+    title: '销售信息'
   },
   {
-    key: '4',
+    key: 'goods-form-pay',
     href: '#goods-form-pay',
-    title: '支付信息',
-    component: GoodsFormPay
+    title: '支付信息'
   },
   {
-    key: '5',
+    key: 'goods-form-logistics',
     href: '#goods-form-logistics',
-    title: '物流信息',
-    component: GoodsFormLogistics
+    title: '物流信息'
   },
   {
-    key: '6',
+    key: 'goods-form-after-sale',
     href: '#goods-form-after-sale',
-    title: '售后信息',
-    component: GoodsFormAfterSale
+    title: '售后信息'
   }
-])
+]
 
 const onGetContainer = () => document.querySelector('.er-section') as AnchorContainer
-
-const itemRefs = ref([])
 
 const emit = defineEmits<{
   backClassify: []
 }>()
+
 const onBackClassify = () => {
   Modal.confirm({
     title: '温馨提示',
@@ -87,6 +60,7 @@ const onBackClassify = () => {
     okText: '确认'
   })
 }
+
 onBeforeRouteLeave((to, from, next) => {
   Modal.confirm({
     title: '温馨提示',
@@ -108,23 +82,93 @@ onBeforeRouteLeave((to, from, next) => {
         :items="anchorItems"
         :targetOffset="60"
       />
-      <div class="form" v-for="item in anchorItems" :key="item.key">
-        <h3 :id="item.href.substring(1)">{{ item.title }}</h3>
-        <Component :is="item.component" ref="itemRefs" :="{ ...item.props }"></Component>
+      <div class="goods-form-card">
+        <h3 class="goods-form-card-title" :id="anchorItems[0].key">基础信息</h3>
+        <GoodsFormBasic :classify-data="classifyData" />
       </div>
+      <div class="goods-form-card">
+        <h3 class="goods-form-card-title" :id="anchorItems[1].key">PC 端图文信息</h3>
+        <GoodsFormImage />
+      </div>
+      <div class="goods-form-card">
+        <h3 class="goods-form-card-title">APP 端图文信息</h3>
+        <GoodsFormImage />
+      </div>
+      <div class="goods-form-card">
+        <h3 class="goods-form-card-title" :id="anchorItems[2].key">销售信息</h3>
+        <GoodsFormSale />
+      </div>
+      <a-form :labelCol="{ span: 3 }">
+        <div class="goods-form-card">
+          <h3 class="goods-form-card-title" :id="anchorItems[3].key">库存减扣</h3>
+          <a-form-item label="库存扣减方式" class="p-20-60 w-1000">
+            <a-radio-group>
+              <a-radio class="leading-8" :value="1">拍下减库存</a-radio>
+              <a-radio class="leading-8" :value="2">付款减库存</a-radio>
+            </a-radio-group>
+          </a-form-item>
+        </div>
+        <div class="goods-form-card">
+          <h3 class="goods-form-card-title" :id="anchorItems[4].key">物流信息</h3>
+          <a-form-item label="统一运费" required class="p-20-60 w-1000">
+            <a-input></a-input>
+          </a-form-item>
+        </div>
+        <div class="goods-form-card">
+          <h3 class="goods-form-card-title" :id="anchorItems[5].key">售后信息</h3>
+          <a-form-item class="p-20-60 w-1000">
+            <a-checkbox-group>
+              <a-checkbox class="leading-8" :value="1">7天无理由退货</a-checkbox>
+              <a-checkbox class="leading-8" :value="2">假一赔十</a-checkbox>
+              <a-checkbox class="leading-8" :value="3">支持换货</a-checkbox>
+            </a-checkbox-group>
+          </a-form-item>
+        </div>
+        <div class="goods-form-card">
+          <h3 class="goods-form-card-title">上架时间</h3>
+          <a-form-item class="p-20-60 mb-0 w-1000">
+            <a-radio-group>
+              <a-radio class="leading-8" :value="1">立刻上架</a-radio>
+              <a-radio class="leading-8" :value="2">定时上架</a-radio>
+              <a-radio class="leading-8" :value="3">放入仓库</a-radio>
+            </a-radio-group>
+          </a-form-item>
+          <a-form-item class="p-20-60 w-1000" label="设定为">
+            <a-date-picker format="YYYY-MM-DD HH:mm:ss" />
+          </a-form-item>
+        </div>
+      </a-form>
+      <a-space size="large" class="submit">
+        <a-button size="large">保存草稿</a-button>
+        <a-button size="large" type="primary">提交商品</a-button>
+      </a-space>
     </a-page-header>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .goods-form {
-  .form {
-    min-height: 300px;
+  &-card {
+    padding: 24px 0;
+    border-bottom: 1px solid #eaeaea;
 
-    h3 {
-      margin: 20px 0;
+    &-title {
+      position: relative;
+      margin-top: 10px;
+      padding-left: 16px;
       font-size: 16px;
       font-weight: 500;
+      line-height: 50px;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 15px;
+        left: 0;
+        width: 3px;
+        height: 20px;
+        background-color: var(--er-primary);
+      }
     }
   }
 
@@ -136,6 +180,11 @@ onBeforeRouteLeave((to, from, next) => {
         padding: 12px 24px;
       }
     }
+  }
+
+  .submit {
+    width: 100%;
+    padding: 60px;
   }
 }
 </style>

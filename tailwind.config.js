@@ -5,7 +5,14 @@ module.exports = {
     extend: {
       fontSize: {
         12: '12px',
+        16: '16px',
         18: '18px'
+      },
+      width: {
+        1000: '1000px'
+      },
+      padding: {
+        '20-60': '20px 60px'
       }
     }
   },

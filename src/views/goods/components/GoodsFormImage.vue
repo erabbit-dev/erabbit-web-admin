@@ -13,7 +13,7 @@ const formModel = ref()
 
 <template>
   <div class="goods-form-image">
-    <a-form>
+    <a-form :labelCol="{ span: 3 }">
       <a-form-item label="商品属性">
         <p class="form-text">
           商品主图大小不能超过3MB；700*700 以上图片上传后商品详情页自动提供放大镜功能
@@ -23,7 +23,7 @@ const formModel = ref()
           action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
           list-type="picture-card"
           @preview="handlePreview"
-          class="mt-4"
+          class="mt-3"
         >
           <div class="text-gray-400" v-if="pcFileList.length < 10">
             <PlusOutlined class="mb-2 text-18" />
@@ -59,7 +59,7 @@ const formModel = ref()
         </div>
       </a-form-item>
       <a-form-item label="商品描述">
-        <a-textarea :rows="4" placeholder="请输入"></a-textarea>
+        <a-textarea :rows="5" placeholder="请输入" :maxlength="500" show-count></a-textarea>
       </a-form-item>
       <a-form-item label="商品图片">
         <a-upload
@@ -83,12 +83,6 @@ const formModel = ref()
 .goods-form-image {
   max-width: 1000px;
   padding: 20px 60px;
-
-  :deep(.ant-form-item-label) {
-    label {
-      color: #848484;
-    }
-  }
 
   .one-card {
     :deep(.ant-upload) {
