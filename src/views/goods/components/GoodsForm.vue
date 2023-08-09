@@ -2,14 +2,12 @@
 import { Modal } from 'ant-design-vue'
 import type { AnchorContainer } from 'ant-design-vue/es/anchor/Anchor'
 import { onBeforeRouteLeave } from 'vue-router'
-import type { ClassifyDataItem } from './ClassifySelect.vue'
+import { useClassifyData } from '../composables'
 import GoodsFormBasic from './GoodsFormBasic.vue'
 import GoodsFormImage from './GoodsFormImage.vue'
 import GoodsFormSale from './GoodsFormSale.vue'
 
-defineProps<{
-  classifyData: ClassifyDataItem[]
-}>()
+const { classifyData } = useClassifyData()
 
 const anchorItems = [
   {
