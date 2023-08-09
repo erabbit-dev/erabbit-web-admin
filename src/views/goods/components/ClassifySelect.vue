@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { getClassifyListService } from '@/service/goods'
 import { computed, onMounted, ref } from 'vue'
-import ClassifySelectItem, { type OptionType } from './ClassifySelectItem.vue'
+import ClassifySelectItem from './ClassifySelectItem.vue'
+import type { ClassifyDataItem, OptionType } from '../types'
 
-export type ClassifyDataItem = { options: OptionType[]; loading: boolean; item?: OptionType }
 const classifyData = ref<ClassifyDataItem[]>([])
 
 onMounted(async () => {

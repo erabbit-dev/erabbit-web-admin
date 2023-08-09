@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import { LoadingOutlined } from '@ant-design/icons-vue'
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import { ref } from 'vue'
+import type { OptionType } from '../types'
 
-export type OptionType = {
-  id: string
-  name: string
-}
 const props = defineProps<{
   placeholder?: string
   options: OptionType[]
@@ -32,6 +29,15 @@ const onSelected = (item: OptionType) => {
   selectedId.value = item.id
   emit('selected', item)
 }
+
+watch(
+  () => props.loading,
+  () => {
+    if (!props.loading) {
+      selectedId.value = undefined
+    }
+  }
+)
 </script>
 
 <template>

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { OtherProperties } from '@/types/goods'
 import { computed, ref } from 'vue'
-import type { ClassifyDataItem } from './ClassifySelect.vue'
 import { LoadingOutlined } from '@ant-design/icons-vue'
 import { onMounted } from 'vue'
 import { getPropertiesService } from '@/service/goods'
+import type { ClassifyDataItem } from '../types'
 
 const props = defineProps<{
   classifyData: ClassifyDataItem[]
@@ -13,7 +13,7 @@ const props = defineProps<{
 const properties = ref<OtherProperties[]>([])
 const loading = ref(false)
 onMounted(async () => {
-  const backendId = props.classifyData[2].item?.id
+  const backendId = props.classifyData[2]?.item?.id
   if (backendId) {
     try {
       loading.value = true
