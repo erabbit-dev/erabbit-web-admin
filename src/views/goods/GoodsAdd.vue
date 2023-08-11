@@ -5,7 +5,6 @@ import GoodsForm from './components/GoodsForm.vue'
 import type { ClassifyDataItem } from './types'
 
 const { classifyData, setClassifyData } = useClassifyData()
-console.log(classifyData.value)
 
 const onBackClassify = () => setClassifyData([])
 const onNext = (data: ClassifyDataItem[]) => setClassifyData(data)
