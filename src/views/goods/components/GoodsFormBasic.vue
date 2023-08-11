@@ -1,33 +1,12 @@
 <script setup lang="ts">
 import type { OtherProperties } from '@/types/goods'
-import { computed, ref } from 'vue'
 import { LoadingOutlined } from '@ant-design/icons-vue'
-import { onMounted } from 'vue'
-import { getPropertiesService } from '@/service/goods'
-import type { ClassifyDataItem } from '../types'
 
-const props = defineProps<{
-  classifyData: ClassifyDataItem[]
+defineProps<{
+  properties?: OtherProperties[] | null
+  selectedText: string
+  loading: boolean
 }>()
-
-const properties = ref<OtherProperties[]>([])
-const loading = ref(false)
-onMounted(async () => {
-  const backendId = props.classifyData[2]?.item?.id
-  if (backendId) {
-    try {
-      loading.value = true
-      const res = await getPropertiesService(backendId)
-      properties.value = res.data.otherProperties || []
-    } finally {
-      loading.value = false
-    }
-  }
-})
-
-const selectedText = computed(() => {
-  return props.classifyData.map((item) => item.item?.name).join(' > ')
-})
 </script>
 
 <template>
@@ -44,7 +23,11 @@ const selectedText = computed(() => {
           错误填写宝贝属性，可能会引起宝贝下架或搜索流量减少，影响您的正常销售，请认真准确填写！
         </p>
         <p class="form-text">没有合适的属性值？<a href="#">点击反馈</a></p>
-        <div class="attrs" v-if="!loading" :style="properties.length ? {} : { border: 'none' }">
+        <div
+          class="attrs"
+          v-if="!loading"
+          :style="properties && properties.length ? {} : { border: 'none' }"
+        >
           <div class="attrs-item" v-for="item in properties" :key="item.id">
             <div class="attrs-item-header">{{ item.name }}：</div>
             <div class="attrs-item-body">

@@ -6,6 +6,11 @@ import { useClassifyData } from '../composables'
 import GoodsFormBasic from './GoodsFormBasic.vue'
 import GoodsFormImage from './GoodsFormImage.vue'
 import GoodsFormSale from './GoodsFormSale.vue'
+import { ref } from 'vue'
+import type { GoodsProperties } from '@/types/goods'
+import { onMounted } from 'vue'
+import { getPropertiesService } from '@/service/goods'
+import { computed } from 'vue'
 
 const { classifyData } = useClassifyData()
 
@@ -69,6 +74,25 @@ onBeforeRouteLeave((to, from, next) => {
     okText: '确认'
   })
 })
+
+const properties = ref<GoodsProperties>()
+const loading = ref(false)
+onMounted(async () => {
+  const backendId = classifyData.value[2]?.item?.id
+  if (backendId) {
+    try {
+      loading.value = true
+      const res = await getPropertiesService(backendId)
+      properties.value = res.data
+    } finally {
+      loading.value = false
+    }
+  }
+})
+
+const selectedText = computed(() => {
+  return classifyData.value.map((item) => item.item?.name).join(' > ')
+})
 </script>
 
 <template>
@@ -82,7 +106,11 @@ onBeforeRouteLeave((to, from, next) => {
       />
       <div class="goods-form-card">
         <h3 class="goods-form-card-title" :id="anchorItems[0].key">基础信息</h3>
-        <GoodsFormBasic :classify-data="classifyData" />
+        <GoodsFormBasic
+          :properties="properties?.otherProperties"
+          :selected-text="selectedText"
+          :loading="loading"
+        />
       </div>
       <div class="goods-form-card">
         <h3 class="goods-form-card-title" :id="anchorItems[1].key">PC 端图文信息</h3>
@@ -94,7 +122,7 @@ onBeforeRouteLeave((to, from, next) => {
       </div>
       <div class="goods-form-card">
         <h3 class="goods-form-card-title" :id="anchorItems[2].key">销售信息</h3>
-        <GoodsFormSale />
+        <GoodsFormSale :properties="properties?.saleProperties" />
       </div>
       <a-form :labelCol="{ span: 3 }">
         <div class="goods-form-card">

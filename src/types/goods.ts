@@ -62,7 +62,7 @@ export type Attribution = {
  */
 export type GoodsProperties = {
   otherProperties: OtherProperties[] | null
-  saleProperties: SaleProperties[]
+  saleProperties: SaleProperties[] | null
 }
 /**
  * 基础属性组信息
