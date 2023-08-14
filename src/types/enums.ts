@@ -26,3 +26,18 @@ export enum AuditState {
   Pass = 2,
   Reject = 3
 }
+
+/**
+ * 是否备注，0为备注，1为不备注
+ */
+export enum IsRemark {
+  Yes = 0,
+  No = 1
+}
+/**
+ * 是否传图，0为否，1为是
+ */
+export enum ValueHasPicture {
+  No = 0,
+  Yes = 1
+}

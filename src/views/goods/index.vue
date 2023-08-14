@@ -1,5 +1,5 @@
 <script setup lang="tsx">
-import { State } from '@/enums'
+import { State } from '@/types/enums'
 import {
   batchDeleteGoodsService,
   batchDownGoodsService,

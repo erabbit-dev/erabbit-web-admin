@@ -1,4 +1,4 @@
-import { State } from '@/enums'
+import { State } from '@/types/enums'
 import type {
   Attribution,
   ClassifyTree,
