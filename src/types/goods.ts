@@ -1,4 +1,4 @@
-import type { State } from '@/enums'
+import type { AuditState, EditState, IsRemark, State, ValueHasPicture } from './enums'
 
 export type StateMap = Record<State, string>
 
@@ -72,6 +72,7 @@ export type OtherProperties = {
   name: string
   properties: SaleProperties[]
 }
+
 /**
  * 属性信息
  */
@@ -81,7 +82,7 @@ export type SaleProperties = {
   groupName: string
   values: PropertyValue[]
   isRemark: IsRemark
-  valueHasPicture: 0 | 1
+  valueHasPicture: ValueHasPicture
 }
 /**
  * 属性值
