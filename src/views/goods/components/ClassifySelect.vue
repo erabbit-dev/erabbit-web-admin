@@ -70,7 +70,7 @@ const onNext = () => {
 <style lang="scss" scoped>
 .classify-select {
   width: 100%;
-  max-width: 1000px;
+  max-width: var(--er-max-width);
 }
 
 .tip {

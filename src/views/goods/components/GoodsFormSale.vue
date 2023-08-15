@@ -4,6 +4,7 @@ import { message } from 'ant-design-vue'
 import { ref, watch } from 'vue'
 import type { PropertyItem } from '../types'
 import GoodsFormSaleAttr from './GoodsFormSaleAttr.vue'
+import GoodsFormSaleTable from './GoodsFormSaleTable.vue'
 
 const props = defineProps<{
   properties?: SaleProperties[] | null
@@ -71,6 +72,9 @@ const onUpdateAttrValue = (i: number, j: number, value: string) => {
           </div>
         </div>
       </a-form-item>
+      <a-form-item label="价格" required>
+        <GoodsFormSaleTable />
+      </a-form-item>
       <a-form-item label="一口价" required>
         <a-input placeholder="请输入"></a-input>
       </a-form-item>
@@ -83,7 +87,7 @@ const onUpdateAttrValue = (i: number, j: number, value: string) => {
 
 <style lang="scss" scoped>
 .goods-form-sale {
-  max-width: 1000px;
+  max-width: var(--er-max-width);
   padding: 20px 60px;
 
   .attrs {

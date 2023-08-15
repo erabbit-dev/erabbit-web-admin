@@ -81,7 +81,7 @@ const formModel = ref()
 
 <style lang="scss" scoped>
 .goods-form-image {
-  max-width: 1000px;
+  max-width: var(--er-max-width);
   padding: 20px 60px;
 
   .one-card {

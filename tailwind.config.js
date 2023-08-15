@@ -9,7 +9,7 @@ module.exports = {
         18: '18px'
       },
       width: {
-        1000: '1000px'
+        1000: ' var(--er-max-width)'
       },
       padding: {
         '20-60': '20px 60px'
