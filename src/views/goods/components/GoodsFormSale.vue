@@ -25,10 +25,6 @@ const onDelAttrValue = (i: number, j: number) => {
   if (!propertyItem) return
 
   propertyItem.values.splice(j, 1)
-
-  if (propertyItem.values.length === 0) {
-    propertyList.value.splice(i, 1)
-  }
 }
 
 const onAddAttrValue = (i: number) => {
