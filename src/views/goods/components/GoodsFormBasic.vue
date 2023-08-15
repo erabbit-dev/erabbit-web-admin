@@ -56,7 +56,7 @@ defineProps<{
 
 <style lang="scss" scoped>
 .goods-form-basic {
-  max-width: 1000px;
+  max-width: var(--er-max-width);
   padding: 20px 60px;
 
   .attrs {
